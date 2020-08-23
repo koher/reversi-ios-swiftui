@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		D672EFAB24F24091001C7E91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D672EFAA24F24091001C7E91 /* Preview Assets.xcassets */; };
 		D672EFB624F24091001C7E91 /* ReversiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFB524F24091001C7E91 /* ReversiTests.swift */; };
 		D672EFC124F24091001C7E91 /* ReversiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFC024F24091001C7E91 /* ReversiUITests.swift */; };
+		D672EFCF24F24122001C7E91 /* DiskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFCE24F24122001C7E91 /* DiskView.swift */; };
+		D672EFD224F2415A001C7E91 /* ReversiLogics in Frameworks */ = {isa = PBXBuildFile; productRef = D672EFD124F2415A001C7E91 /* ReversiLogics */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,7 @@
 		D672EFBC24F24091001C7E91 /* ReversiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReversiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D672EFC024F24091001C7E91 /* ReversiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversiUITests.swift; sourceTree = "<group>"; };
 		D672EFC224F24091001C7E91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D672EFCE24F24122001C7E91 /* DiskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D672EFD224F2415A001C7E91 /* ReversiLogics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +101,7 @@
 			children = (
 				D672EFA324F24090001C7E91 /* ReversiApp.swift */,
 				D672EFA524F24090001C7E91 /* ContentView.swift */,
+				D672EFCE24F24122001C7E91 /* DiskView.swift */,
 				D672EFA724F24091001C7E91 /* Assets.xcassets */,
 				D672EFAC24F24091001C7E91 /* Info.plist */,
 				D672EFA924F24091001C7E91 /* Preview Content */,
@@ -146,6 +151,9 @@
 			dependencies = (
 			);
 			name = Reversi;
+			packageProductDependencies = (
+				D672EFD124F2415A001C7E91 /* ReversiLogics */,
+			);
 			productName = Reversi;
 			productReference = D672EFA024F24090001C7E91 /* Reversi.app */;
 			productType = "com.apple.product-type.application";
@@ -217,6 +225,9 @@
 				Base,
 			);
 			mainGroup = D672EF9724F24090001C7E91;
+			packageReferences = (
+				D672EFD024F2415A001C7E91 /* XCRemoteSwiftPackageReference "reversi-logics-swift" */,
+			);
 			productRefGroup = D672EFA124F24090001C7E91 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -260,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D672EFA624F24090001C7E91 /* ContentView.swift in Sources */,
+				D672EFCF24F24122001C7E91 /* DiskView.swift in Sources */,
 				D672EFA424F24090001C7E91 /* ReversiApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,6 +592,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D672EFD024F2415A001C7E91 /* XCRemoteSwiftPackageReference "reversi-logics-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/koher/reversi-logics-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D672EFD124F2415A001C7E91 /* ReversiLogics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D672EFD024F2415A001C7E91 /* XCRemoteSwiftPackageReference "reversi-logics-swift" */;
+			productName = ReversiLogics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D672EF9824F24090001C7E91 /* Project object */;
 }

@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ReversiLogics",
+        "repositoryURL": "https://github.com/koher/reversi-logics-swift.git",
+        "state": {
+          "branch": "master",
+          "revision": "cc3b32b514277f5e561d6f1b5c6e28f518a8e145",
+          "version": null
+        }
+      },
+      {
+        "package": "SwiftyReversi",
+        "repositoryURL": "https://github.com/koher/swifty-reversi.git",
+        "state": {
+          "branch": null,
+          "revision": "aa628b46aa99e3fd5203aa02e72d62d7552d1fb6",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
