@@ -2,10 +2,10 @@ import SwiftUI
 import SwiftyReversi
 
 struct ContentView: View {
-    @State var disk: Disk = .dark
+    @State var game: Game = .init(board: Board(width: 8, height: 8))
     var body: some View {
-        CellView(disk: disk) {
-            disk.flip()
+        BoardView(game.board) { x, y in
+            try? game.placeDiskAt(x: x, y: y)
         }
             .padding()
     }

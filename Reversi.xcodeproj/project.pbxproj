@@ -16,6 +16,7 @@
 		D672EFCF24F24122001C7E91 /* DiskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFCE24F24122001C7E91 /* DiskView.swift */; };
 		D672EFD224F2415A001C7E91 /* ReversiLogics in Frameworks */ = {isa = PBXBuildFile; productRef = D672EFD124F2415A001C7E91 /* ReversiLogics */; };
 		D672EFD624F242EE001C7E91 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFD524F242EE001C7E91 /* CellView.swift */; };
+		D672EFD824F24E8C001C7E91 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFD724F24E8C001C7E91 /* BoardView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		D672EFC224F24091001C7E91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D672EFCE24F24122001C7E91 /* DiskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskView.swift; sourceTree = "<group>"; };
 		D672EFD524F242EE001C7E91 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		D672EFD724F24E8C001C7E91 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			children = (
 				D672EFA324F24090001C7E91 /* ReversiApp.swift */,
 				D672EFA524F24090001C7E91 /* ContentView.swift */,
+				D672EFD724F24E8C001C7E91 /* BoardView.swift */,
 				D672EFD524F242EE001C7E91 /* CellView.swift */,
 				D672EFCE24F24122001C7E91 /* DiskView.swift */,
 				D672EFA724F24091001C7E91 /* Assets.xcassets */,
@@ -275,6 +278,7 @@
 			files = (
 				D672EFD624F242EE001C7E91 /* CellView.swift in Sources */,
 				D672EFA624F24090001C7E91 /* ContentView.swift in Sources */,
+				D672EFD824F24E8C001C7E91 /* BoardView.swift in Sources */,
 				D672EFCF24F24122001C7E91 /* DiskView.swift in Sources */,
 				D672EFA424F24090001C7E91 /* ReversiApp.swift in Sources */,
 			);
