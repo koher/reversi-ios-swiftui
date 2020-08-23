@@ -1,8 +1,12 @@
 import SwiftUI
+import SwiftyReversi
 
 struct ContentView: View {
+    @State var disk: Disk = .dark
     var body: some View {
-        Text("Hello, world!")
+        CellView(disk: disk) {
+            disk.flip()
+        }
             .padding()
     }
 }
