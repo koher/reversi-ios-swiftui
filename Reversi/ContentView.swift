@@ -1,12 +1,18 @@
 import SwiftUI
+import ReversiLogics
 import SwiftyReversi
 
 struct ContentView: View {
-    @State var game: Game = .init(board: Board(width: 8, height: 8))
+    @State var gamePresenter: GamePresenter = .init(
+        gameManager: GameManager(
+            game: Game(),
+            darkPlayer: .manual,
+            lightPlayer: .manual
+        )
+    )
+    
     var body: some View {
-        BoardView(game.board) { x, y in
-            try? game.placeDiskAt(x: x, y: y)
-        }
+        GameView(presenter: $gamePresenter)
             .padding()
     }
 }
