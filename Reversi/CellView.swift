@@ -16,7 +16,7 @@ struct CellView: View {
             Button(action: action, label: {
                 ZStack {
                     Rectangle()
-                        .foregroundColor(Color("CellColor"))
+                        .foregroundColor(.cell)
                     if let disk = disk {
                         DiskView(disk)
                             .animation(.linear(duration: 0.25))

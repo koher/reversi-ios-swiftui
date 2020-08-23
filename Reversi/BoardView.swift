@@ -23,8 +23,8 @@ struct BoardView: View {
                 }
             }
         }
-        .background(Color("DarkColor"))
-        .border(Color("DarkColor"), width: 2)
+        .background(Color.dark)
+        .border(Color.dark, width: 2)
         .aspectRatio(1, contentMode: .fit)
     }
 }

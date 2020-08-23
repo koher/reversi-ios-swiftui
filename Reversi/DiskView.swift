@@ -17,8 +17,8 @@ struct DiskView: View {
 private extension Disk {
     var color: Color {
         switch self {
-        case .dark: return Color("DarkColor")
-        case .light: return Color("LightColor")
+        case .dark: return .dark
+        case .light: return .light
         }
     }
 }
