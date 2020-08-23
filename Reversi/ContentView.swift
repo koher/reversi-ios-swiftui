@@ -4,7 +4,7 @@ import SwiftyReversi
 
 struct ContentView: View {
     @State var gamePresenter: GamePresenter = .init(
-        gameManager: GameManager(
+        manager: GameManager(
             game: Game(),
             darkPlayer: .manual,
             lightPlayer: .manual

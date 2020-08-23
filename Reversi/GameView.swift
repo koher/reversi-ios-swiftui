@@ -29,7 +29,7 @@ struct GameView: View {
                     }
                     Spacer()
                 }
-                BoardView(presenter.gameManager.game.board) { x, y in
+                BoardView(presenter.manager.game.board) { x, y in
                     // TODO
                 }
                 HStack(spacing: 16) {
@@ -99,7 +99,7 @@ extension GameView {
 
 struct GameView_Previews: PreviewProvider {
     static var presenter: GamePresenter = .init(
-        gameManager: GameManager(
+        manager: GameManager(
             game: Game(),
             darkPlayer: .manual,
             lightPlayer: .manual
