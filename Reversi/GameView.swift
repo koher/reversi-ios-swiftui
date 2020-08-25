@@ -25,11 +25,11 @@ struct GameView: View {
                 }
                 Spacer()
             }
-            BoardView(presenter.manager.game.board) { x, y in
+            BoardView(presenter.manager.game.board, action: { x, y in
                 presenter.tryPlacingDiskAt(x: x, y: y)
-            } animationCompletion: {
+            }, animationCompletion: presenter.needsAnimatingBoardChanges ? {
                 presenter.completePlacingDisks()
-            }
+            } : nil)
             HStack(spacing: 16) {
                 Spacer()
                 if presenter.isPlayerActivityIndicatorVisible(of: .dark) {
@@ -46,8 +46,11 @@ struct GameView: View {
             Button("Reset") {
                 presenter.confirmToReset()
             }
-            .alert(isPresented: .constant(presenter.isResetAlertVisible)) {
-                Alert(
+        }
+        .padding(20)
+        .alert(isPresented: .constant(presenter.isResetAlertVisible || presenter.isPassingAlertVisible)) {
+            if presenter.isResetAlertVisible {
+                return Alert(
                     title: Text("Confirmation"),
                     message: Text("Do you really want to reset the game?"),
                     primaryButton: .cancel(Text("Cancel")) {
@@ -57,17 +60,17 @@ struct GameView: View {
                         presenter.completeConfirmationForReset(true)
                     }
                 )
+            } else if presenter.isPassingAlertVisible {
+                return Alert(
+                    title: Text("Pass"),
+                    message: Text("Cannot place a disk."),
+                    dismissButton: .default(Text("Dismiss")) {
+                        presenter.completeConfirmationForPass()
+                    }
+                )
+            } else {
+                preconditionFailure("Never reaches here.")
             }
-        }
-        .padding(20)
-        .alert(isPresented: .constant(presenter.isPassingAlertVisible)) {
-            Alert(
-                title: Text("Pass"),
-                message: Text("Cannot place a disk."),
-                dismissButton: .default(Text("Dismiss")) {
-                    presenter.completeConfirmationForPass()
-                }
-            )
         }
     }
 }

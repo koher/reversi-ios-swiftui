@@ -5,41 +5,44 @@ import SwiftyReversi
 struct BoardView: UIViewControllerRepresentable {
     let board: Board
     let action: (Int, Int) -> Void
-    let animationCompletion: () -> Void
+    let animationCompletion: (() -> Void)?
     
-    init(_ board: Board, action: @escaping (Int, Int) -> Void, animationCompletion: @escaping () -> Void) {
+    init(_ board: Board, action: @escaping (Int, Int) -> Void, animationCompletion: (() -> Void)?) {
         self.board = board
         self.action = action
         self.animationCompletion = animationCompletion
     }
     
     func makeUIViewController(context: Context) -> _BoardViewController {
-        _BoardViewController(board, action: action, animationCompletion: animationCompletion)
+        _BoardViewController(board, action: action)
     }
     
     func updateUIViewController(_ uiViewController: _BoardViewController, context: Context) {
-        uiViewController.board = board
+        uiViewController.setBoard(board, animated: animationCompletion != nil, completion: animationCompletion)
     }
 }
 
 final class _BoardViewController: UIHostingController<_BoardView> {
-    var board: Board {
-        didSet {
-            if board != oldValue {
-                // FIXME: Implement animations to flip disks one by one
-                rootView = _BoardView(board, action: action)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: animationCompletion)
-            }
-        }
-    }
+    private var board: Board
     var action: (Int, Int) -> Void
-    var animationCompletion: () -> Void
 
-    init(_ board: Board, action: @escaping (Int, Int) -> Void, animationCompletion: @escaping () -> Void) {
+    init(_ board: Board, action: @escaping (Int, Int) -> Void) {
         self.board = board
         self.action = action
-        self.animationCompletion = animationCompletion
         super.init(rootView: _BoardView(board, action: action))
+    }
+    
+    func setBoard(_ board: Board, animated isAnimated: Bool, completion: (() -> Void)?) {
+        if board != self.board {
+            rootView = _BoardView(board, action: action)
+            self.board = board
+            if isAnimated {
+                // FIXME: Implement animations to flip disks one by one
+                if let completion = completion {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: completion)
+                }
+            }
+        }
     }
     
     @objc required dynamic init?(coder aDecoder: NSCoder) {
