@@ -1,8 +1,53 @@
 import SwiftUI
+import UIKit
 import SwiftyReversi
 
-// TODO: Implement appropriate animations.
-struct BoardView: View {
+struct BoardView: UIViewControllerRepresentable {
+    let board: Board
+    let action: (Int, Int) -> Void
+    let animationCompletion: () -> Void
+    
+    init(_ board: Board, action: @escaping (Int, Int) -> Void, animationCompletion: @escaping () -> Void) {
+        self.board = board
+        self.action = action
+        self.animationCompletion = animationCompletion
+    }
+    
+    func makeUIViewController(context: Context) -> _BoardViewController {
+        _BoardViewController(board, action: action, animationCompletion: animationCompletion)
+    }
+    
+    func updateUIViewController(_ uiViewController: _BoardViewController, context: Context) {
+        uiViewController.board = board
+    }
+}
+
+final class _BoardViewController: UIHostingController<_BoardView> {
+    var board: Board {
+        didSet {
+            if board != oldValue {
+                // FIXME: Implement animations to flip disks one by one
+                rootView = _BoardView(board, action: action)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: animationCompletion)
+            }
+        }
+    }
+    var action: (Int, Int) -> Void
+    var animationCompletion: () -> Void
+
+    init(_ board: Board, action: @escaping (Int, Int) -> Void, animationCompletion: @escaping () -> Void) {
+        self.board = board
+        self.action = action
+        self.animationCompletion = animationCompletion
+        super.init(rootView: _BoardView(board, action: action))
+    }
+    
+    @objc required dynamic init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+struct _BoardView: View {
     let board: Board
     let action: (Int, Int) -> Void
     
@@ -29,8 +74,8 @@ struct BoardView: View {
     }
 }
 
-struct BoardView_Previews: PreviewProvider {
+struct _BoardView_Previews: PreviewProvider {
     static var previews: some View {
-        BoardView(Board(width: 8, height: 8)) { _, _ in }
+        _BoardView(Board(width: 8, height: 8)) { _, _ in }
     }
 }

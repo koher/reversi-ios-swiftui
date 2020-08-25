@@ -27,6 +27,8 @@ struct GameView: View {
             }
             BoardView(presenter.manager.game.board) { x, y in
                 presenter.tryPlacingDiskAt(x: x, y: y)
+            } animationCompletion: {
+                presenter.completePlacingDisks()
             }
             HStack(spacing: 16) {
                 Spacer()
