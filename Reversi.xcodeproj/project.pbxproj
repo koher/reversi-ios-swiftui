@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D61778FB24F2D03E0028C846 /* ColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61778FA24F2D03E0028C846 /* ColorExtensions.swift */; };
 		D672EFA424F24090001C7E91 /* ReversiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFA324F24090001C7E91 /* ReversiApp.swift */; };
-		D672EFA624F24090001C7E91 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFA524F24090001C7E91 /* ContentView.swift */; };
 		D672EFA824F24091001C7E91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D672EFA724F24091001C7E91 /* Assets.xcassets */; };
 		D672EFAB24F24091001C7E91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D672EFAA24F24091001C7E91 /* Preview Assets.xcassets */; };
 		D672EFB624F24091001C7E91 /* ReversiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFB524F24091001C7E91 /* ReversiTests.swift */; };
@@ -19,6 +18,7 @@
 		D672EFD624F242EE001C7E91 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFD524F242EE001C7E91 /* CellView.swift */; };
 		D672EFD824F24E8C001C7E91 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFD724F24E8C001C7E91 /* BoardView.swift */; };
 		D672EFDB24F25257001C7E91 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFDA24F25257001C7E91 /* GameView.swift */; };
+		D6B461B224F5E5F700392128 /* Saver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B461B124F5E5F700392128 /* Saver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +42,6 @@
 		D61778FA24F2D03E0028C846 /* ColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
 		D672EFA024F24090001C7E91 /* Reversi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reversi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D672EFA324F24090001C7E91 /* ReversiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversiApp.swift; sourceTree = "<group>"; };
-		D672EFA524F24090001C7E91 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D672EFA724F24091001C7E91 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D672EFAA24F24091001C7E91 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D672EFAC24F24091001C7E91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +55,7 @@
 		D672EFD524F242EE001C7E91 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		D672EFD724F24E8C001C7E91 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		D672EFDA24F25257001C7E91 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		D6B461B124F5E5F700392128 /* Saver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,11 +108,11 @@
 			isa = PBXGroup;
 			children = (
 				D672EFA324F24090001C7E91 /* ReversiApp.swift */,
-				D672EFA524F24090001C7E91 /* ContentView.swift */,
 				D672EFD724F24E8C001C7E91 /* BoardView.swift */,
 				D672EFD524F242EE001C7E91 /* CellView.swift */,
 				D672EFCE24F24122001C7E91 /* DiskView.swift */,
 				D672EFDA24F25257001C7E91 /* GameView.swift */,
+				D6B461B124F5E5F700392128 /* Saver.swift */,
 				D61778FA24F2D03E0028C846 /* ColorExtensions.swift */,
 				D672EFA724F24091001C7E91 /* Assets.xcassets */,
 				D672EFAC24F24091001C7E91 /* Info.plist */,
@@ -283,12 +283,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D672EFD624F242EE001C7E91 /* CellView.swift in Sources */,
-				D672EFA624F24090001C7E91 /* ContentView.swift in Sources */,
 				D672EFD824F24E8C001C7E91 /* BoardView.swift in Sources */,
 				D672EFCF24F24122001C7E91 /* DiskView.swift in Sources */,
 				D672EFDB24F25257001C7E91 /* GameView.swift in Sources */,
 				D672EFA424F24090001C7E91 /* ReversiApp.swift in Sources */,
 				D61778FB24F2D03E0028C846 /* ColorExtensions.swift in Sources */,
+				D6B461B224F5E5F700392128 /* Saver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

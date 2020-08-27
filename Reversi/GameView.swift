@@ -3,14 +3,24 @@ import SwiftyReversi
 import ReversiLogics
 
 struct GameView: View {
-    @Binding var presenter: GamePresenter
-    
-    init(presenter: Binding<GamePresenter>) {
-        self._presenter = presenter
-    }
+    @State var presenter: GamePresenter = {
+        if let savedState = try? Saver.shared.load() {
+            return GamePresenter(savedState: savedState)
+        } else {
+            return GamePresenter(
+                manager: GameManager(
+                    game: Game(),
+                    darkPlayer: .manual,
+                    lightPlayer: .manual
+                )
+            )
+        }
+    }()
     
     var body: some View {
-        VStack(spacing: 20) {
+        try? Saver.shared.save(presenter.savedState)
+
+        return VStack(spacing: 20) {
             MessageView(presenter.message)
             Spacer()
             HStack(spacing: 16) {
@@ -30,6 +40,7 @@ struct GameView: View {
             }, animationCompletion: presenter.needsAnimatingBoardChanges ? {
                 presenter.completePlacingDisks()
             } : nil)
+                .aspectRatio(1, contentMode: .fit)
             HStack(spacing: 16) {
                 Spacer()
                 if presenter.isPlayerActivityIndicatorVisible(of: .dark) {
@@ -120,20 +131,7 @@ extension GameView {
 }
 
 struct GameView_Previews: PreviewProvider {
-    static var presenter: GamePresenter = .init(
-        manager: GameManager(
-            game: Game(),
-            darkPlayer: .manual,
-            lightPlayer: .manual
-        )
-    )
-    
     static var previews: some View {
-        GameView(
-            presenter: Binding(
-                get: { presenter },
-                set: { newValue in presenter = newValue }
-            )
-        )
+        GameView()
     }
 }
