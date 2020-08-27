@@ -1,6 +1,7 @@
 import SwiftUI
 import UIKit
 import SwiftyReversi
+import ReversiLogics
 
 struct BoardView: UIViewControllerRepresentable {
     let board: Board
@@ -24,25 +25,47 @@ struct BoardView: UIViewControllerRepresentable {
 
 final class _BoardViewController: UIHostingController<_BoardView> {
     private var board: Board
+    private var animatedBoard: Board
     var action: (Int, Int) -> Void
+    
+    private var animationWorkItem: DispatchWorkItem?
 
     init(_ board: Board, action: @escaping (Int, Int) -> Void) {
         self.board = board
+        self.animatedBoard = board
         self.action = action
         super.init(rootView: _BoardView(board, action: action))
     }
     
     func setBoard(_ board: Board, animated isAnimated: Bool, completion: (() -> Void)?) {
-        if board != self.board {
+        if board == self.board { return }
+
+        animationWorkItem?.cancel()
+        animationWorkItem = nil
+        
+        self.animatedBoard = self.board
+        self.board = board
+
+        if isAnimated {
+            animateDiff(BoardDiff(from: animatedBoard, to: board).result[...], completion: completion)
+        } else {
             rootView = _BoardView(board, action: action)
-            self.board = board
-            if isAnimated {
-                // FIXME: Implement animations to flip disks one by one
-                if let completion = completion {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: completion)
-                }
-            }
+            completion?()
         }
+    }
+    
+    private func animateDiff(_ diff: ArraySlice<(disk: Disk?, x: Int, y: Int)>, completion: (() -> Void)?) {
+        guard let (disk, x, y) = diff.first else {
+            completion?()
+            return
+        }
+        animatedBoard[x, y] = disk
+        rootView = _BoardView(animatedBoard, action: action)
+        let workItem: DispatchWorkItem = .init { [weak self] in
+            self?.animateDiff(diff[(diff.startIndex + 1)...], completion: completion)
+        }
+        self.animationWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: workItem)
     }
     
     @objc required dynamic init?(coder aDecoder: NSCoder) {
