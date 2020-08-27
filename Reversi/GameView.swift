@@ -45,7 +45,7 @@ struct GameView: View {
             BoardView(presenter.manager.game.board, action: { x, y in
                 presenter.tryPlacingDiskAt(x: x, y: y)
             }, animationCompletion: presenter.needsAnimatingBoardChanges ? {
-                presenter.completePlacingDisks()
+                presenter.completeFlippingDisks()
             } : nil)
                 .aspectRatio(1, contentMode: .fit)
             HStack(spacing: 16) {
@@ -72,10 +72,10 @@ struct GameView: View {
                     title: Text("Confirmation"),
                     message: Text("Do you really want to reset the game?"),
                     primaryButton: .cancel(Text("Cancel")) {
-                        presenter.completeConfirmationForReset(false)
+                        presenter.reset(false)
                     },
                     secondaryButton: .destructive(Text("OK")) {
-                        presenter.completeConfirmationForReset(true)
+                        presenter.reset(true)
                     }
                 )
             } else if presenter.isPassingAlertVisible {
@@ -83,7 +83,7 @@ struct GameView: View {
                     title: Text("Pass"),
                     message: Text("Cannot place a disk."),
                     dismissButton: .default(Text("Dismiss")) {
-                        presenter.completeConfirmationForPass()
+                        presenter.pass()
                     }
                 )
             } else {
