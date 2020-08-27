@@ -19,6 +19,13 @@ struct GameView: View {
     
     var body: some View {
         try? Saver.shared.save(presenter.savedState)
+        if let board = presenter.boardForComputer {
+            Computer.shared.move(for: board) { x, y in
+                presenter.placeDiskAt(x: x, y: y)
+            }
+        } else {
+            Computer.shared.cancel()
+        }
 
         return VStack(spacing: 20) {
             MessageView(presenter.message)
