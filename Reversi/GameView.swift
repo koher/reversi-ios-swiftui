@@ -3,28 +3,18 @@ import SwiftyReversi
 import ReversiLogics
 
 struct GameView: View {
-    @State var presenter: GamePresenter = {
-        if let savedState = try? Saver.shared.load() {
-            return GamePresenter(savedState: savedState)
-        } else {
-            return GamePresenter(
-                manager: GameManager(
-                    game: Game(),
-                    darkPlayer: .manual,
-                    lightPlayer: .manual
-                )
-            )
-        }
-    }()
+    @Environment(\.computer) private var computer: Computer
+    @Environment(\.saver) private var saver: Saver
+    @State var presenter: GamePresenter
     
     var body: some View {
-        try? Saver.shared.save(presenter.savedState)
+        try? saver.save(presenter.savedState)
         if let board = presenter.boardForComputer {
-            Computer.shared.move(for: board) { x, y in
+            computer.move(for: board) { x, y in
                 presenter.placeDiskAt(x: x, y: y)
             }
         } else {
-            Computer.shared.cancel()
+            computer.cancel()
         }
 
         return VStack(spacing: 20) {
@@ -134,11 +124,5 @@ extension GameView {
             })
                 .pickerStyle(SegmentedPickerStyle())
         }
-    }
-}
-
-struct GameView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView()
     }
 }

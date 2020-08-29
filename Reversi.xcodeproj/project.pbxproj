@@ -20,6 +20,8 @@
 		D672EFDB24F25257001C7E91 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFDA24F25257001C7E91 /* GameView.swift */; };
 		D6B461B224F5E5F700392128 /* Saver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B461B124F5E5F700392128 /* Saver.swift */; };
 		D6BD0DC224F7F1C900851290 /* Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6BD0DC124F7F1C900851290 /* Computer.swift */; };
+		D6CD6A1124FA485500509101 /* EnvironmentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD6A1024FA485500509101 /* EnvironmentExtensions.swift */; };
+		D6CD6A1324FA4B6700509101 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6CD6A1224FA4B6700509101 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		D672EFDA24F25257001C7E91 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		D6B461B124F5E5F700392128 /* Saver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saver.swift; sourceTree = "<group>"; };
 		D6BD0DC124F7F1C900851290 /* Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Computer.swift; sourceTree = "<group>"; };
+		D6CD6A1024FA485500509101 /* EnvironmentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentExtensions.swift; sourceTree = "<group>"; };
+		D6CD6A1224FA4B6700509101 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,9 +114,11 @@
 			isa = PBXGroup;
 			children = (
 				D672EFA324F24090001C7E91 /* ReversiApp.swift */,
+				D6CD6A1224FA4B6700509101 /* ContentView.swift */,
 				D672EFD724F24E8C001C7E91 /* BoardView.swift */,
 				D672EFD524F242EE001C7E91 /* CellView.swift */,
 				D61778FA24F2D03E0028C846 /* ColorExtensions.swift */,
+				D6CD6A1024FA485500509101 /* EnvironmentExtensions.swift */,
 				D6BD0DC124F7F1C900851290 /* Computer.swift */,
 				D672EFCE24F24122001C7E91 /* DiskView.swift */,
 				D672EFDA24F25257001C7E91 /* GameView.swift */,
@@ -291,7 +297,9 @@
 				D672EFCF24F24122001C7E91 /* DiskView.swift in Sources */,
 				D672EFDB24F25257001C7E91 /* GameView.swift in Sources */,
 				D672EFA424F24090001C7E91 /* ReversiApp.swift in Sources */,
+				D6CD6A1324FA4B6700509101 /* ContentView.swift in Sources */,
 				D61778FB24F2D03E0028C846 /* ColorExtensions.swift in Sources */,
+				D6CD6A1124FA485500509101 /* EnvironmentExtensions.swift in Sources */,
 				D6B461B224F5E5F700392128 /* Saver.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
