@@ -20,36 +20,26 @@ struct GameView: View {
         return VStack(spacing: 20) {
             MessageView(presenter.message)
             Spacer()
-            HStack(spacing: 16) {
-                DiskView(.light)
-                    .frame(width: 26, height: 26)
-                PlayerPicker(selection: $presenter.lightPlayer)
-                    .frame(width: 161)
-                Text(presenter.count(of: .light).description)
-                    .font(.system(size: 24))
-                if presenter.isPlayerActivityIndicatorVisible(of: .light) {
-                    ProgressView()
-                }
-                Spacer()
-            }
+            PlayerStateView(
+                side: .dark,
+                count: presenter.count(of: .dark),
+                player: $presenter.darkPlayer,
+                isActivityIndicatorVisible: presenter.isPlayerActivityIndicatorVisible(of: .dark)
+            )
+                .environment(\.layoutDirection, .leftToRight)
             BoardView(presenter.manager.game.board, action: { x, y in
                 presenter.tryPlacingDiskAt(x: x, y: y)
             }, animationCompletion: presenter.needsAnimatingBoardChanges ? {
                 presenter.completeFlippingDisks()
             } : nil)
                 .aspectRatio(1, contentMode: .fit)
-            HStack(spacing: 16) {
-                Spacer()
-                if presenter.isPlayerActivityIndicatorVisible(of: .dark) {
-                    ProgressView()
-                }
-                Text(presenter.count(of: .dark).description)
-                    .font(.system(size: 24))
-                PlayerPicker(selection: $presenter.darkPlayer)
-                    .frame(width: 161)
-                DiskView(.dark)
-                    .frame(width: 26, height: 26)
-            }
+            PlayerStateView(
+                side: .light,
+                count: presenter.count(of: .light),
+                player: $presenter.lightPlayer,
+                isActivityIndicatorVisible: presenter.isPlayerActivityIndicatorVisible(of: .light)
+            )
+                .environment(\.layoutDirection, .rightToLeft)
             Spacer()
             Button("Reset") {
                 presenter.confirmToReset()
@@ -108,6 +98,31 @@ extension GameView {
                     Text("Tied")
                         .font(.system(size: 32))
                 }
+            }
+        }
+    }
+}
+
+extension GameView {
+    struct PlayerStateView: View {
+        let side: Disk
+        let count: Int
+        @Binding var player: Player
+        let isActivityIndicatorVisible: Bool
+        
+        var body: some View {
+            HStack(spacing: 16) {
+                DiskView(side)
+                    .frame(width: 26, height: 26)
+                PlayerPicker(selection: $player)
+                    .frame(width: 161)
+                    .environment(\.layoutDirection, .leftToRight)
+                Text(count.description)
+                    .font(.system(size: 24))
+                if isActivityIndicatorVisible {
+                    ProgressView()
+                }
+                Spacer()
             }
         }
     }
