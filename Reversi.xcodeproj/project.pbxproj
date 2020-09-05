@@ -113,15 +113,15 @@
 		D672EFA224F24090001C7E91 /* Reversi */ = {
 			isa = PBXGroup;
 			children = (
-				D672EFA324F24090001C7E91 /* ReversiApp.swift */,
-				D6CD6A1224FA4B6700509101 /* ContentView.swift */,
 				D672EFD724F24E8C001C7E91 /* BoardView.swift */,
 				D672EFD524F242EE001C7E91 /* CellView.swift */,
 				D61778FA24F2D03E0028C846 /* ColorExtensions.swift */,
-				D6CD6A1024FA485500509101 /* EnvironmentExtensions.swift */,
 				D6BD0DC124F7F1C900851290 /* Computer.swift */,
+				D6CD6A1224FA4B6700509101 /* ContentView.swift */,
 				D672EFCE24F24122001C7E91 /* DiskView.swift */,
+				D6CD6A1024FA485500509101 /* EnvironmentExtensions.swift */,
 				D672EFDA24F25257001C7E91 /* GameView.swift */,
+				D672EFA324F24090001C7E91 /* ReversiApp.swift */,
 				D6B461B124F5E5F700392128 /* Saver.swift */,
 				D672EFA724F24091001C7E91 /* Assets.xcassets */,
 				D672EFAC24F24091001C7E91 /* Info.plist */,

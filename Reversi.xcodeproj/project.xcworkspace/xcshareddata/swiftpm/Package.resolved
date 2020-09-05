@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/koher/reversi-logics-swift.git",
         "state": {
           "branch": "master",
-          "revision": "6600538f4e0519e0dff7391c79b5bd8cb0a2f218",
+          "revision": "a9d6bc588605bbd8f481f000754863e24c5a060a",
           "version": null
         }
       },
@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/koher/swifty-reversi.git",
         "state": {
           "branch": null,
-          "revision": "aa628b46aa99e3fd5203aa02e72d62d7552d1fb6",
-          "version": "0.1.0"
+          "revision": "b8b904ad881bcbbc1d3a9c6e0a697085a0e9dfa6",
+          "version": "0.2.0-beta"
         }
       }
     ]
