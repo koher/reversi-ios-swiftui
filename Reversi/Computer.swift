@@ -2,8 +2,6 @@ import SwiftyReversi
 import Dispatch
 
 final class Computer {
-    static let shared: Computer = .init()
-    
     private var board: Board?
     private var workItem: DispatchWorkItem?
     

@@ -5,8 +5,6 @@ import ReversiLogics
 final class Saver {
     private static let url: URL = .init(fileURLWithPath: (NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true).first! as NSString).appendingPathComponent("Game"))
     
-    static let shared: Saver = .init()
-    
     private var state: SavedState?
     
     func load() throws -> SavedState {
