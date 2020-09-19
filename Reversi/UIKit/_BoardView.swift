@@ -16,6 +16,8 @@ public class _BoardView: UIView {
     
     public weak var delegate: _BoardViewDelegate?
     
+    private var animationCanceller: AnimationCanceller?
+    
     override public init(frame: CGRect) {
         xRange = 0 ..< width
         yRange = 0 ..< height
@@ -122,6 +124,7 @@ public class _BoardView: UIView {
     }
     
     public func setDisk(_ disk: Disk?, atX x: Int, y: Int, animated isAnimated: Bool, completion: ((Bool) -> Void)? = nil) {
+        precondition(Thread.isMainThread)
         guard let cellView = cellViewAt(x: x, y: y) else {
             preconditionFailure() // FIXME: Add a message.
         }
@@ -139,25 +142,33 @@ public class _BoardView: UIView {
     }
     
     public func setBoard(_ board: Board, animated isAnimated: Bool, completion: ((Bool) -> Void)? = nil) {
+        precondition(Thread.isMainThread)
         precondition(board.width == width)
         precondition(board.height == height)
         
+        animationCanceller?.cancel()
+        let canceller: AnimationCanceller = .init()
+        animationCanceller = canceller
+        
         let boardDiff: BoardDiff = .init(from: self.board, to: board)
-        applyBoardDiffResult(boardDiff.result[...], animated: isAnimated, completion: completion)
+        applyBoardDiffResult(boardDiff.result[...], animated: isAnimated, canceller: canceller, completion: completion)
     }
     
-    private func applyBoardDiffResult(_ diff: ArraySlice<(disk: Disk?, x: Int, y: Int)>, animated isAnimated: Bool, completion: ((Bool) -> Void)?) {
+    private func applyBoardDiffResult(_ diff: ArraySlice<(disk: Disk?, x: Int, y: Int)>, animated isAnimated: Bool, canceller: AnimationCanceller, completion: ((Bool) -> Void)?) {
+        if canceller.isCancelled { return }
         guard let (disk, x, y) = diff.first else {
+            animationCanceller = nil
             completion?(true)
             return
         }
         setDisk(disk, atX: x, y: y, animated: isAnimated) { [weak self] isFinished in
             guard let self = self else { return }
             guard isFinished else {
+                self.animationCanceller = nil
                 completion?(isFinished)
                 return
             }
-            self.applyBoardDiffResult(diff[(diff.startIndex + 1)...], animated: isAnimated, completion: completion)
+            self.applyBoardDiffResult(diff[(diff.startIndex + 1)...], animated: isAnimated, canceller: canceller, completion: completion)
         }
     }
 }
@@ -166,7 +177,7 @@ public protocol _BoardViewDelegate: AnyObject {
     func boardView(_ boardView: _BoardView, didSelectCellAtX x: Int, y: Int)
 }
 
-private class CellSelectionAction: NSObject {
+private final class CellSelectionAction: NSObject {
     private weak var boardView: _BoardView?
     let x: Int
     let y: Int
@@ -180,5 +191,12 @@ private class CellSelectionAction: NSObject {
     @objc func selectCell() {
         guard let boardView = boardView else { return }
         boardView.delegate?.boardView(boardView, didSelectCellAtX: x, y: y)
+    }
+}
+
+private final class AnimationCanceller {
+    private(set) var isCancelled: Bool = false
+    func cancel() {
+        isCancelled = true
     }
 }
