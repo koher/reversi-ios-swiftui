@@ -14,14 +14,14 @@ struct BoardView: UIViewRepresentable {
         self.animationCompletion = animationCompletion
     }
     
-    func makeUIView(context: Context) -> __BoardView {
-        let view: __BoardView = .init()
+    func makeUIView(context: Context) -> _BoardView {
+        let view: _BoardView = .init()
         view.delegate = context.coordinator
         view.setBoard(board, animated: false, completion: nil)
         return view
     }
     
-    func updateUIView(_ uiView: __BoardView, context: Context) {
+    func updateUIView(_ uiView: _BoardView, context: Context) {
         context.coordinator.action = action
         uiView.setBoard(board, animated: animationCompletion != nil) { _ in
             animationCompletion?()
@@ -37,7 +37,7 @@ struct BoardView: UIViewRepresentable {
         init(action: @escaping (Int, Int) -> Void) {
             self.action = action
         }
-        func boardView(_ boardView: __BoardView, didSelectCellAtX x: Int, y: Int) {
+        func boardView(_ boardView: _BoardView, didSelectCellAtX x: Int, y: Int) {
             action(x, y)
         }
     }

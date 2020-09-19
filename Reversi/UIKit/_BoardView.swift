@@ -4,7 +4,7 @@ import ReversiLogics
 
 private let lineWidth: CGFloat = 2
 
-public class __BoardView: UIView {
+public class _BoardView: UIView {
     private var cellViews: [_CellView] = []
     private var actions: [CellSelectionAction] = []
     
@@ -163,15 +163,15 @@ public class __BoardView: UIView {
 }
 
 public protocol _BoardViewDelegate: AnyObject {
-    func boardView(_ boardView: __BoardView, didSelectCellAtX x: Int, y: Int)
+    func boardView(_ boardView: _BoardView, didSelectCellAtX x: Int, y: Int)
 }
 
 private class CellSelectionAction: NSObject {
-    private weak var boardView: __BoardView?
+    private weak var boardView: _BoardView?
     let x: Int
     let y: Int
     
-    init(boardView: __BoardView, x: Int, y: Int) {
+    init(boardView: _BoardView, x: Int, y: Int) {
         self.boardView = boardView
         self.x = x
         self.y = y
