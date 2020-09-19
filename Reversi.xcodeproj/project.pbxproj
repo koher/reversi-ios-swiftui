@@ -15,7 +15,6 @@
 		D672EFC124F24091001C7E91 /* ReversiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFC024F24091001C7E91 /* ReversiUITests.swift */; };
 		D672EFCF24F24122001C7E91 /* DiskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFCE24F24122001C7E91 /* DiskView.swift */; };
 		D672EFD224F2415A001C7E91 /* ReversiLogics in Frameworks */ = {isa = PBXBuildFile; productRef = D672EFD124F2415A001C7E91 /* ReversiLogics */; };
-		D672EFD624F242EE001C7E91 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFD524F242EE001C7E91 /* CellView.swift */; };
 		D672EFD824F24E8C001C7E91 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFD724F24E8C001C7E91 /* BoardView.swift */; };
 		D672EFDB24F25257001C7E91 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D672EFDA24F25257001C7E91 /* GameView.swift */; };
 		D6B461B224F5E5F700392128 /* Saver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B461B124F5E5F700392128 /* Saver.swift */; };
@@ -58,7 +57,6 @@
 		D672EFC024F24091001C7E91 /* ReversiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReversiUITests.swift; sourceTree = "<group>"; };
 		D672EFC224F24091001C7E91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D672EFCE24F24122001C7E91 /* DiskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskView.swift; sourceTree = "<group>"; };
-		D672EFD524F242EE001C7E91 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		D672EFD724F24E8C001C7E91 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		D672EFDA24F25257001C7E91 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		D6B461B124F5E5F700392128 /* Saver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Saver.swift; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 			children = (
 				D6CAAF2B2515D765004DAE45 /* UIKit */,
 				D672EFD724F24E8C001C7E91 /* BoardView.swift */,
-				D672EFD524F242EE001C7E91 /* CellView.swift */,
 				D61778FA24F2D03E0028C846 /* ColorExtensions.swift */,
 				D6BD0DC124F7F1C900851290 /* Computer.swift */,
 				D6CD6A1224FA4B6700509101 /* ContentView.swift */,
@@ -309,7 +306,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6BD0DC224F7F1C900851290 /* Computer.swift in Sources */,
-				D672EFD624F242EE001C7E91 /* CellView.swift in Sources */,
 				D672EFD824F24E8C001C7E91 /* BoardView.swift in Sources */,
 				D672EFCF24F24122001C7E91 /* DiskView.swift in Sources */,
 				D672EFDB24F25257001C7E91 /* GameView.swift in Sources */,
