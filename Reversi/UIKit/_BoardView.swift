@@ -1,5 +1,6 @@
 import UIKit
 import SwiftyReversi
+import ReversiLogics
 
 private let lineWidth: CGFloat = 2
 
@@ -120,11 +121,44 @@ public class __BoardView: UIView {
         cellViewAt(x: x, y: y)?.disk
     }
     
-    public func setDisk(_ disk: Disk?, atX x: Int, y: Int, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+    public func setDisk(_ disk: Disk?, atX x: Int, y: Int, animated isAnimated: Bool, completion: ((Bool) -> Void)? = nil) {
         guard let cellView = cellViewAt(x: x, y: y) else {
             preconditionFailure() // FIXME: Add a message.
         }
-        cellView.setDisk(disk, animated: animated, completion: completion)
+        cellView.setDisk(disk, animated: isAnimated, completion: completion)
+    }
+    
+    public var board: Board {
+        var board: Board = .init(width: width, height: height)
+        for y in yRange {
+            for x in xRange {
+                board[x, y] = cellViewAt(x: x, y: y)!.disk
+            }
+        }
+        return board
+    }
+    
+    public func setBoard(_ board: Board, animated isAnimated: Bool, completion: ((Bool) -> Void)? = nil) {
+        precondition(board.width == width)
+        precondition(board.height == height)
+        
+        let boardDiff: BoardDiff = .init(from: self.board, to: board)
+        applyBoardDiffResult(boardDiff.result[...], animated: isAnimated, completion: completion)
+    }
+    
+    private func applyBoardDiffResult(_ diff: ArraySlice<(disk: Disk?, x: Int, y: Int)>, animated isAnimated: Bool, completion: ((Bool) -> Void)?) {
+        guard let (disk, x, y) = diff.first else {
+            completion?(true)
+            return
+        }
+        setDisk(disk, atX: x, y: y, animated: isAnimated) { [weak self] isFinished in
+            guard let self = self else { return }
+            guard isFinished else {
+                completion?(isFinished)
+                return
+            }
+            self.applyBoardDiffResult(diff[(diff.startIndex + 1)...], animated: isAnimated, completion: completion)
+        }
     }
 }
 
