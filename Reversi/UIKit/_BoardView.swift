@@ -151,7 +151,11 @@ public class _BoardView: UIView {
         animationCanceller = canceller
         
         let boardDiff: BoardDiff = .init(from: self.board, to: board)
-        applyBoardDiffResult(boardDiff.result[...], animated: isAnimated, canceller: canceller, completion: completion)
+        applyBoardDiffResult(boardDiff.result[...], animated: isAnimated, canceller: canceller) { isFinished in
+            DispatchQueue.main.async {
+                completion?(isFinished)
+            }
+        }
     }
     
     private func applyBoardDiffResult(_ diff: ArraySlice<(disk: Disk?, x: Int, y: Int)>, animated isAnimated: Bool, canceller: AnimationCanceller, completion: ((Bool) -> Void)?) {
