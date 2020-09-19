@@ -1,30 +1,20 @@
 import SwiftUI
 import SwiftyReversi
 
-struct DiskView: View {
+struct DiskView: UIViewRepresentable {
     let disk: Disk
     
     init(_ disk: Disk) {
         self.disk = disk
     }
     
-    var body: some View {
-        Circle()
-            .foregroundColor(disk.color)
+    func makeUIView(context: Context) -> _DiskView {
+        let view = _DiskView()
+        view.disk = disk
+        return view
     }
-}
-
-private extension Disk {
-    var color: Color {
-        switch self {
-        case .dark: return .dark
-        case .light: return .light
-        }
-    }
-}
-
-struct DiskView_Previews: PreviewProvider {
-    static var previews: some View {
-        DiskView(.dark)
+    
+    func updateUIView(_ uiView: _DiskView, context: Context) {
+        uiView.disk = disk
     }
 }
